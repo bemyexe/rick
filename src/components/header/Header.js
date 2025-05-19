@@ -9,7 +9,7 @@ export function Header() {
   );
 }
 
-const HeaderContainer = styled.div`
+const HeaderContainer = styled.header`
   width: 100%;
   display: flex;
   justify-content: center;

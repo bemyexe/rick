@@ -22,7 +22,7 @@ export function Pagination() {
     });
 
     setPages(createdPages);
-  }, [info]);
+  }, [apiURL, info]);
 
   if (pages.length <= 1) return null;
 
@@ -54,7 +54,9 @@ export function Pagination() {
           {activePage + 1 !== pages.length - 1 && (
             <>
               <Ellipsis>...</Ellipsis>
-              <Page onClick={() => pageClickHandler(pages.length)}>Last »</Page>
+              <Page onClick={() => pageClickHandler(pages.length - 1)}>
+                Last »
+              </Page>
             </>
           )}
         </>
@@ -68,25 +70,18 @@ const StyledPagination = styled.div`
   text-align: center;
 `;
 
-const Page = styled.span`
+const Page = styled.button`
   color: #fff;
   font-size: 18px;
   padding: 5px;
   cursor: pointer;
   transition: color 0.2s;
+  background: transparent;
   ${({ active }) => active && 'color: #83bf46'};
 
   &:hover {
     color: #83bf46;
   }
-`;
-
-const Container = styled.div`
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  justify-items: center;
-  gap: 30px;
 `;
 
 const Ellipsis = styled(Page)`

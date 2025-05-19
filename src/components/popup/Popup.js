@@ -16,7 +16,7 @@ export function Popup({ settings: { visible, content = {} }, setSettings }) {
     episode: episodes
   } = content;
 
-  function togglePopup(e) {
+  const togglePopup = (e) => {
     if (e.currentTarget !== e.target) {
       return;
     }
@@ -25,7 +25,7 @@ export function Popup({ settings: { visible, content = {} }, setSettings }) {
       ...prevState,
       visible: !prevState.visible
     }));
-  }
+  };
 
   return (
     <PopupContainer visible={visible}>
