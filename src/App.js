@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { Pagination, ItemsGrid, useData, Header, AppState } from './components';
+import { Button } from './components/common/Button';
+import { Input } from './components/common/Input';
 
 export function App() {
   const { isFetching, isError } = useData();
@@ -7,7 +9,9 @@ export function App() {
   return (
     <Main>
       <Header />
-
+      <Button color="#83BF46">Button</Button>
+      <Button color="#FF5152">Button</Button>
+      <Input />
       <AppState />
 
       {!isFetching && !isError && (

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import widgetLogo from '../../assets/widget-logo.png';
 
 export function Logo() {
-  return <StyledLogo src={widgetLogo} alt="logo" />;
+  return <StyledLogo src={widgetLogo} alt="logo" loading="lazy" />;
 }
 
 const StyledLogo = styled.img`

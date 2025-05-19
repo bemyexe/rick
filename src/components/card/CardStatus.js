@@ -4,7 +4,7 @@ export function CardStatus({ status, species, type, className }) {
   return (
     <CardStatusContainer className={className}>
       <StyledCardStatus status={status}>{status}</StyledCardStatus>
-      &nbsp;-&nbsp;
+      <CardSeparator>-</CardSeparator>
       <CardSpecies>{species}</CardSpecies>
       {type && <CardType>{type}</CardType>}
     </CardStatusContainer>
@@ -13,6 +13,7 @@ export function CardStatus({ status, species, type, className }) {
 
 const CardStatusContainer = styled.div`
   display: flex;
+  gap: 5px;
   flex-wrap: wrap;
 `;
 
@@ -40,7 +41,7 @@ const StyledCardStatus = styled.span`
     }};
   }
 `;
-
+const CardSeparator = styled.span``;
 const CardSpecies = styled.span``;
 
 const CardType = styled.p`

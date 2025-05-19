@@ -11,9 +11,19 @@ export function Card({
   image,
   onClickHandler
 }) {
+  const handleEnterDown = (event) => {
+    if (event.key === 'Enter') {
+      onClickHandler();
+    }
+  };
+
   return (
-    <StyledCard onClick={onClickHandler}>
-      <CardImg src={image} alt={name} />
+    <StyledCard
+      onKeyDown={handleEnterDown}
+      tabIndex={0}
+      onClick={onClickHandler}
+    >
+      <CardImg src={image} alt={name} height={267} loading="lazy" />
 
       <CardInfo>
         <CardTitle name={name} gender={gender} />
@@ -46,6 +56,7 @@ const StyledCard = styled.div`
 
 const CardImg = styled.img`
   border-radius: 10px 10px 0 0;
+  heigth: 100%;
 `;
 
 const CardInfo = styled.div`

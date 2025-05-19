@@ -1,7 +1,8 @@
-import styled, { css } from 'styled-components';
+import styled, { css, createGlobalStyle } from 'styled-components';
 import { PopupEpisodes } from './PopupEpisodes';
 import { PopupHeader } from './PopupHeader';
 import { PopupInfo } from './PopupInfo';
+import { useEffect } from 'react';
 
 export function Popup({ settings: { visible, content = {} }, setSettings }) {
   const {
@@ -16,6 +17,23 @@ export function Popup({ settings: { visible, content = {} }, setSettings }) {
     episode: episodes
   } = content;
 
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setSettings((prevState) => ({
+          ...prevState,
+          visible: !prevState.visible
+        }));
+      }
+    };
+
+    if (visible) {
+      document.addEventListener('keydown', handleKeyDown);
+    }
+
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [setSettings, visible]);
+
   const togglePopup = (e) => {
     if (e.currentTarget !== e.target) {
       return;
@@ -28,26 +46,35 @@ export function Popup({ settings: { visible, content = {} }, setSettings }) {
   };
 
   return (
-    <PopupContainer visible={visible} onClick={togglePopup}>
-      <StyledPopup>
-        <CloseIcon onClick={togglePopup} />
+    <>
+      <GlobalScrollLock visible={visible} />
+      <PopupContainer visible={visible} onClick={togglePopup}>
+        <StyledPopup>
+          <CloseIcon onClick={togglePopup} />
 
-        <PopupHeader
-          name={name}
-          gender={gender}
-          image={image}
-          status={status}
-          species={species}
-          type={type}
-        />
+          <PopupHeader
+            name={name}
+            gender={gender}
+            image={image}
+            status={status}
+            species={species}
+            type={type}
+          />
 
-        <PopupInfo origin={origin} location={location} />
+          <PopupInfo origin={origin} location={location} />
 
-        <PopupEpisodes episodes={episodes} />
-      </StyledPopup>
-    </PopupContainer>
+          <PopupEpisodes episodes={episodes} />
+        </StyledPopup>
+      </PopupContainer>
+    </>
   );
 }
+
+const GlobalScrollLock = createGlobalStyle`
+  body {
+    overflow: ${({ visible }) => (visible ? 'hidden' : 'auto')};
+  }
+`;
 
 const PopupContainer = styled.div`
   position: fixed;
