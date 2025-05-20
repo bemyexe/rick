@@ -20,8 +20,6 @@ const FiltersContainer = styled.div`
   grid-template-columns: repeat(6, 1fr);
   gap: 15px;
 
-  align-self: center;
-
   @media (min-width: 1520px) {
     gap: 10px;
   }
@@ -29,6 +27,7 @@ const FiltersContainer = styled.div`
   @media (max-width: 530px) {
     display: flex;
     flex-direction: column;
+    align-self: center;
     max-width: 300px;
   }
 `;
