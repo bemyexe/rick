@@ -2,6 +2,18 @@ import styled from 'styled-components';
 import { Pagination, ItemsGrid, useData, Header, AppState } from './components';
 import { Button } from './components/common/Button';
 import { Input } from './components/common/Input';
+import { CustomSelect } from './components/common/Select';
+
+const options = [
+  { value: 'chocolate', label: 'Chocolate' },
+  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'vanilla', label: 'Vanilla' },
+  { value: '1', label: 'One' },
+  { value: '2', label: 'Two' },
+  { value: '3', label: 'Three' },
+  { value: '4', label: 'Four' },
+  { value: '5', label: 'Five' }
+];
 
 export function App() {
   const { isFetching, isError } = useData();
@@ -12,6 +24,7 @@ export function App() {
       <Button color="#83BF46">Button</Button>
       <Button color="#FF5152">Button</Button>
       <Input />
+      <CustomSelect options={options} />
       <AppState />
 
       {!isFetching && !isError && (

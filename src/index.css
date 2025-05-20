@@ -9,6 +9,17 @@ body {
   background-color: #001832;
 }
 
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
+}
+
+:root {
+  --main: #263750;
+  --main-light: #334466;
+  --accent: #83bf46;
+  --accent-light: #83bf4633;
+  --white: #f5f5f5;
+  --black: #1e1e1e;
 }
