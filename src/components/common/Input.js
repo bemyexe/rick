@@ -26,7 +26,7 @@ const StyledInput = styled.input`
   text-overflow: ellipsis;
   border-radius: 8px;
   border: 1px solid ${({ _color }) => _color};
-  color: #ccc;
+  color: var(--white);
   padding: 12px 16px;
   font-size: ${({ _fontSize }) => _fontSize};
   background-color: var(--main);
