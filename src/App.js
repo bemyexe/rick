@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import { Pagination, ItemsGrid, useData, Header, AppState } from './components';
-import { Button } from './components/common/Button';
-import { Input } from './components/common/Input';
-import { CustomSelect } from './components/common/Select';
+import { Filters } from './components/filters';
 
 const options = [
   { value: 'chocolate', label: 'Chocolate' },
@@ -21,10 +19,7 @@ export function App() {
   return (
     <Main>
       <Header />
-      <Button color="#83BF46">Button</Button>
-      <Button color="#FF5152">Button</Button>
-      <Input />
-      <CustomSelect options={options} />
+      <Filters />
       <AppState />
 
       {!isFetching && !isError && (
