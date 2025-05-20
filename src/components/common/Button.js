@@ -34,4 +34,8 @@ const StyledButton = styled.button`
     background: ${({ _color }) => _color};
     border: 1px solid ${({ _color }) => _color};
   }
+
+  &:active {
+    transform: translateY(2px) scale(0.98);
+  }
 `;
