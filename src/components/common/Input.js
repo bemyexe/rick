@@ -29,12 +29,12 @@ const StyledInput = styled.input`
   color: #ccc;
   padding: 12px 16px;
   font-size: ${({ _fontSize }) => _fontSize};
-  background-color: #263750;
+  background-color: var(--main);
   transition: all 0.3s linear;
   outline: none;
 
   &:hover,
   &:focus {
-    background-color: #334466;
+    background-color: var(--main-light);
   }
 `;
