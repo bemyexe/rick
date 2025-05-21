@@ -1,12 +1,20 @@
 import styled from 'styled-components';
 import { Button, CustomSelect, Input } from '../common';
+import {
+  GENDER_OPTIONS,
+  SPECIES_OPTIONS,
+  STATUS_OPTIONS
+} from './SelectOptions';
 
 export function Filters({ className }) {
   return (
-    <FiltersContainer>
-      <StyledCustomSelectFirst placeholder="Status" />
-      <StyledCustomSelectSecond placeholder="Gender" />
-      <StyledCustomSelectThird placeholder="Species" />
+    <FiltersContainer className={className}>
+      <StyledCustomSelectFirst placeholder="Status" options={STATUS_OPTIONS} />
+      <StyledCustomSelectSecond placeholder="Gender" options={GENDER_OPTIONS} />
+      <StyledCustomSelectThird
+        placeholder="Species"
+        options={SPECIES_OPTIONS}
+      />
       <StyledInputFirst placeholder="Name" />
       <StyledInputSecond placeholder="Type" />
       <StyledButtonFirst color="var(--accent)">Apply</StyledButtonFirst>

@@ -1,10 +1,7 @@
 import styled from 'styled-components';
 import { Loader, Text } from './common';
-import { useData } from './providers';
 
-export function AppState() {
-  const { isFetching, isError } = useData();
-
+export function AppState({ isFetching, isError, children }) {
   if (isError) {
     return (
       <AppStateContainer>
@@ -21,7 +18,7 @@ export function AppState() {
     );
   }
 
-  return null;
+  return <>{children}</>;
 }
 
 const AppStateContainer = styled.div`

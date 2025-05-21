@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { Pagination, ItemsGrid, useData, Header, AppState } from './components';
 import { Filters } from './components/filters';
-
 const options = [
   { value: 'chocolate', label: 'Chocolate' },
   { value: 'strawberry', label: 'Strawberry' },
@@ -20,15 +19,10 @@ export function App() {
     <Main>
       <Header />
       <Filters />
-      <AppState />
-
-      {!isFetching && !isError && (
-        <>
-          <ItemsGrid />
-
-          <Pagination />
-        </>
-      )}
+      <AppState isFetching={isFetching} isError={isError}>
+        <ItemsGrid />
+        <Pagination />
+      </AppState>
     </Main>
   );
 }

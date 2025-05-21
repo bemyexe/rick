@@ -71,16 +71,17 @@ const StyledPagination = styled.div`
 `;
 
 const Page = styled.button`
-  color: #fff;
+  color: var(--white);
   font-size: 18px;
   padding: 5px;
   cursor: pointer;
   transition: color 0.2s;
   background: transparent;
-  ${({ active }) => active && 'color: #83bf46'};
+  border: none;
+  ${({ active }) => active && 'color: var(--accent)'};
 
   &:hover {
-    color: #83bf46;
+    color: var(--accent);
   }
 `;
 
@@ -88,6 +89,6 @@ const Ellipsis = styled(Page)`
   cursor: default;
 
   &:hover {
-    color: #fff;
+    color: var(--white);
   }
 `;
