@@ -6,6 +6,7 @@ import {
   STATUS_OPTIONS
 } from './SelectOptions';
 import { useState } from 'react';
+import { useData } from '../providers/DataProvider';
 
 const DEFAULT_FORM_STATE = {
   status: '',
@@ -15,18 +16,35 @@ const DEFAULT_FORM_STATE = {
   type: ''
 };
 
+const API_URL = 'https://rickandmortyapi.com/api/character';
+
 export function Filters({ className }) {
   const [formData, setFormData] = useState(DEFAULT_FORM_STATE);
+  const { setApiURL, setActivePage } = useData();
+
+  const getFilterCharacters = async (formValues) => {
+    const params = new URLSearchParams(formValues);
+    const queryString = params.toString();
+    setApiURL(API_URL + '?' + queryString);
+    setActivePage(0);
+    window.history.pushState(null, '', `?${queryString}`);
+  };
 
   const handleChangeInput = (e) => {
     setFormData((prev) => {
-      return { ...prev, [e.target.name.toLowerCase()]: e.target.value };
+      return {
+        ...prev,
+        [e.target.name.toLowerCase()]: e.target.value
+      };
     });
   };
 
   const handleChangeSelect = (name, value) => {
     setFormData((prev) => {
-      return { ...prev, [name.toLowerCase()]: value.value };
+      return {
+        ...prev,
+        [name.toLowerCase()]: value ? value.value : ''
+      };
     });
   };
 
@@ -36,13 +54,16 @@ export function Filters({ className }) {
     return options.find((option) => option.value === formData[fieldName]);
   };
 
-  const handleSubmitForm = (e) => {
+  const handleSubmitForm = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    getFilterCharacters(formData);
   };
 
   const handleClickReset = () => {
     setFormData(DEFAULT_FORM_STATE);
+    setApiURL(API_URL);
+    setActivePage(0);
+    window.history.pushState(null, '', '/');
   };
 
   return (
