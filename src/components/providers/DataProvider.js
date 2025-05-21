@@ -37,6 +37,7 @@ export function DataProvider({ children }) {
       characters,
       isFetching,
       isError,
+      setIsError,
       info
     }),
     [activePage, apiURL, characters, isFetching, isError, info]
