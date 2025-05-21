@@ -5,25 +5,96 @@ import {
   SPECIES_OPTIONS,
   STATUS_OPTIONS
 } from './SelectOptions';
+import { useState } from 'react';
+
+const DEFAULT_FORM_STATE = {
+  status: '',
+  gender: '',
+  species: '',
+  name: '',
+  type: ''
+};
 
 export function Filters({ className }) {
+  const [formData, setFormData] = useState(DEFAULT_FORM_STATE);
+
+  const handleChangeInput = (e) => {
+    setFormData((prev) => {
+      return { ...prev, [e.target.name.toLowerCase()]: e.target.value };
+    });
+  };
+
+  const handleChangeSelect = (name, value) => {
+    setFormData((prev) => {
+      return { ...prev, [name.toLowerCase()]: value.value };
+    });
+  };
+
+  const getSelectValue = (fieldName, options) => {
+    if (!formData[fieldName]) return null;
+
+    return options.find((option) => option.value === formData[fieldName]);
+  };
+
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
+    console.log(formData);
+  };
+
+  const handleClickReset = () => {
+    setFormData(DEFAULT_FORM_STATE);
+  };
+
   return (
     <FiltersContainer className={className}>
-      <StyledCustomSelectFirst placeholder="Status" options={STATUS_OPTIONS} />
-      <StyledCustomSelectSecond placeholder="Gender" options={GENDER_OPTIONS} />
-      <StyledCustomSelectThird
-        placeholder="Species"
-        options={SPECIES_OPTIONS}
-      />
-      <StyledInputFirst placeholder="Name" />
-      <StyledInputSecond placeholder="Type" />
-      <StyledButtonFirst color="var(--accent)">Apply</StyledButtonFirst>
-      <StyledButtonSecond color="var(--red)">Reset</StyledButtonSecond>
+      <StyledForm onSubmit={handleSubmitForm}>
+        <StyledCustomSelectFirst
+          placeholder="Status"
+          options={STATUS_OPTIONS}
+          onChange={(value) => handleChangeSelect('status', value)}
+          value={getSelectValue('status', STATUS_OPTIONS)}
+        />
+        <StyledCustomSelectSecond
+          placeholder="Gender"
+          options={GENDER_OPTIONS}
+          onChange={(value) => handleChangeSelect('gender', value)}
+          value={getSelectValue('gender', GENDER_OPTIONS)}
+        />
+        <StyledCustomSelectThird
+          placeholder="Species"
+          options={SPECIES_OPTIONS}
+          onChange={(value) => handleChangeSelect('species', value)}
+          value={getSelectValue('species', SPECIES_OPTIONS)}
+        />
+        <StyledInputFirst
+          placeholder="Name"
+          name="name"
+          value={formData.name}
+          onChange={handleChangeInput}
+        />
+        <StyledInputSecond
+          placeholder="Type"
+          name="type"
+          value={formData.type}
+          onChange={handleChangeInput}
+        />
+        <StyledButtonFirst color="var(--accent)" type="submit">
+          Apply
+        </StyledButtonFirst>
+        <StyledButtonSecond color="var(--red)" onClick={handleClickReset}>
+          Reset
+        </StyledButtonSecond>
+      </StyledForm>
     </FiltersContainer>
   );
 }
 
 const FiltersContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const StyledForm = styled.form`
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 15px;
@@ -35,7 +106,6 @@ const FiltersContainer = styled.div`
   @media (max-width: 530px) {
     display: flex;
     flex-direction: column;
-    align-self: center;
     max-width: 300px;
   }
 `;

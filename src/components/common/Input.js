@@ -7,10 +7,12 @@ export const Input = ({
   value,
   onChange,
   type = 'text',
+  name,
   className
 }) => {
   return (
     <StyledInput
+      name={name}
       placeholder={placeholder}
       _color={color}
       _fontSize={fontSize}

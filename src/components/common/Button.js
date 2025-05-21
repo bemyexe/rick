@@ -5,10 +5,12 @@ export const Button = ({
   children,
   color = '#ccc',
   className,
-  fontSize = '16px'
+  fontSize = '16px',
+  type = 'button'
 }) => {
   return (
     <StyledButton
+      type={type}
       onClick={onClick}
       _color={color}
       className={className}
