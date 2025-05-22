@@ -15,6 +15,7 @@ export function DataProvider({ children }) {
     const fetchData = async (url) => {
       try {
         setIsFetching(true);
+        setIsError(false);
         const { data } = await axios.get(url);
         setCharacters(data.results);
         setInfo(data.info);
@@ -37,7 +38,6 @@ export function DataProvider({ children }) {
       characters,
       isFetching,
       isError,
-      setIsError,
       info
     }),
     [activePage, apiURL, characters, isFetching, isError, info]

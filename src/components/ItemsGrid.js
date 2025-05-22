@@ -25,7 +25,7 @@ export function ItemsGrid() {
   }
 
   return (
-    <Container>
+    <ItemsGridContainer>
       {characters.map((props) => (
         <Card
           key={props.id}
@@ -35,11 +35,11 @@ export function ItemsGrid() {
       ))}
 
       <Popup settings={popupSettings} setSettings={setPopupSettings} />
-    </Container>
+    </ItemsGridContainer>
   );
 }
 
-const Container = styled.section`
+const ItemsGridContainer = styled.section`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));

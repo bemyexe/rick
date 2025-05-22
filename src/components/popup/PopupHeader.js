@@ -11,7 +11,7 @@ export function PopupHeader({ image, name, gender, status, species, type }) {
   );
 }
 
-const PopupHeaderContainer = styled.div``;
+const PopupHeaderContainer = styled.header``;
 
 const PopupTitle = styled(CardTitle)`
   font-size: 22px;

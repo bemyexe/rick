@@ -20,7 +20,7 @@ const API_URL = 'https://rickandmortyapi.com/api/character';
 
 export function Filters({ className }) {
   const [formData, setFormData] = useState(DEFAULT_FORM_STATE);
-  const { setApiURL, setActivePage, setIsError } = useData();
+  const { setApiURL, setActivePage } = useData();
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -71,13 +71,11 @@ export function Filters({ className }) {
 
   const handleSubmitForm = async (e) => {
     e.preventDefault();
-    setIsError(false);
     getFilterCharacters(formData);
   };
 
   const handleClickReset = () => {
     setFormData(DEFAULT_FORM_STATE);
-    setIsError(false);
     setApiURL(API_URL);
     setActivePage(0);
 
