@@ -1,1 +1,6 @@
-# Elfsight Test Task (Rick and Morty API)
+### Project
+
+- [https://rickky.netlify.app/](https://rickky.netlify.app/)
+
+### Run
+- npm run start
