@@ -1,4 +1,4 @@
-### Project
+### Test Task Elfsight
 
 - [https://rickky.netlify.app/](https://rickky.netlify.app/)
 
